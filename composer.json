@@ -1,5 +1,5 @@
 {
-  "name": "voilaah/mail-log-plugin",
+  "name": "voilaah/maillog-plugin",
   "type": "october-plugin",
   "description": "Adds a sent mail log to the settings back end of OctoberCMS",
   "require": {
