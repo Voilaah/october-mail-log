@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreatevoilaahMaillogLog extends Migration
+class BuilderTableCreateVoilaahMaillogLog extends Migration
 {
     public function up()
     {
