@@ -1,4 +1,8 @@
-Initially forked from suresoftware/october-mail-log to port over October CMS v2
+# Support for October CMS v2 (Forked)
+
+The original version of this plugin was abandoned. This is an actively maintained fork of the original plugin that supports October CMS v2.
+
+(Initially forked from suresoftware/october-mail-log)
 
 # OctoberCMS Mail Log
 
