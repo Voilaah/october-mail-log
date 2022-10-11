@@ -10,21 +10,25 @@ class AddBodyAttachmentsCCFieldsToLogTable extends Migration
 {
     public function up()
     {
-        Schema::table('voilaah_maillog_log', function (Blueprint $table) {
-            $table->string('cc')->nullable();
-            $table->string('bcc')->nullable();
-            $table->longText('body')->nullable();
-            $table->longText('attachments')->nullable();
-        });
+        if (Schema::hasTable('voilaah_maillog_log')) {
+            Schema::table('voilaah_maillog_log', function (Blueprint $table) {
+                $table->string('cc')->nullable();
+                $table->string('bcc')->nullable();
+                $table->longText('body')->nullable();
+                $table->longText('attachments')->nullable();
+            });
+        }
     }
 
     public function down()
     {
-        Schema::table('voilaah_maillog_log', function (Blueprint $table) {
-            $table->dropColumn('cc');
-            $table->dropColumn('bcc');
-            $table->dropColumn('body');
-            $table->dropColumn('attachments');
-        });
+        if (Schema::hasTable('voilaah_maillog_log')) {
+            Schema::table('voilaah_maillog_log', function (Blueprint $table) {
+                $table->dropColumn('cc');
+                $table->dropColumn('bcc');
+                $table->dropColumn('body');
+                $table->dropColumn('attachments');
+            });
+        }
     }
 }
