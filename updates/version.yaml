@@ -15,3 +15,5 @@
 2.0.0: !!! 'Added in automatic mail log purging. This will automatically purge mail logs that are 30 days or older by default'
 2.1.0:
     - 'Changed permissions to use default log permissions'
+2.1.1:
+    - 'Compatibility with October CMS v2'
