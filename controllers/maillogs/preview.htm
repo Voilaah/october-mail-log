@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('suresoftware/maillog/maillogs') ?>">Mail Log</a></li>
+        <li><a href="<?= Backend::url('voilaah/maillog/maillogs') ?>">Mail Log</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -16,7 +16,7 @@
             <?= $this->formRender(['preview' => true, 'section' => 'primary']) ?>
         </div>
 
-        <p><a href="<?= Backend::url('suresoftware/maillog/maillogs') ?>" class="btn btn-default oc-icon-chevron-left"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+        <p><a href="<?= Backend::url('voilaah/maillog/maillogs') ?>" class="btn btn-default oc-icon-chevron-left"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
     <?php Block::endPut() ?>
 
     <?php Block::put('form-sidebar') ?>
@@ -33,7 +33,7 @@
 
     <div class="padded-container container-flush">
         <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-        <p><a href="<?= Backend::url('suresoftware/maillog/maillogs') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+        <p><a href="<?= Backend::url('voilaah/maillog/maillogs') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
     </div>
 
 <?php endif ?>

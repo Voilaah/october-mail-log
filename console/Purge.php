@@ -1,8 +1,10 @@
-<?php namespace SureSoftware\Maillog\Console;
+<?php
+
+namespace Voilaah\Maillog\Console;
 
 use Illuminate\Console\Command;
-use SureSoftware\MailLog\Models\MailLog;
-use SureSoftware\MailLog\Models\Settings;
+use Voilaah\MailLog\Models\MailLog;
+use Voilaah\MailLog\Models\Settings;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

@@ -1,4 +1,6 @@
-<?php namespace SureSoftware\MailLog\Controllers;
+<?php
+
+namespace Voilaah\MailLog\Controllers;
 
 use Backend;
 use Backend\Classes\Controller;
@@ -30,7 +32,7 @@ class MailLogs extends Controller
         parent::__construct();
 
         BackendMenu::setContext('October.System', 'system', 'settings');
-        SettingsManager::setContext('SureSoftware.MailLog', 'mailLog');
+        SettingsManager::setContext('voilaah.MailLog', 'mailLog');
     }
 
     public function index_onRefresh()
@@ -40,11 +42,11 @@ class MailLogs extends Controller
 
     public function create($context = null)
     {
-        return Redirect::to(Backend::url('suresoftware/maillog/maillogs'));
+        return Redirect::to(Backend::url('voilaah/maillog/maillogs'));
     }
 
     public function update($context = null)
     {
-        return Redirect::to(Backend::url('suresoftware/maillog/maillogs'));
+        return Redirect::to(Backend::url('voilaah/maillog/maillogs'));
     }
 }

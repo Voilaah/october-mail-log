@@ -1,9 +1,11 @@
-<?php namespace SureSoftware\MailLog;
+<?php
+
+namespace Voilaah\MailLog;
 
 use Backend\Facades\Backend;
 use Illuminate\Support\Facades\Event;
-use SureSoftware\Maillog\Console\Purge;
-use SureSoftware\MailLog\Models\MailLog;
+use Voilaah\Maillog\Console\Purge;
+use Voilaah\MailLog\Models\MailLog;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
 
@@ -42,7 +44,7 @@ class Plugin extends PluginBase
                 'description' => 'View all outgoing mail with their outgoing timestamps and email addresses',
                 'category'    => SettingsManager::CATEGORY_LOGS,
                 'icon'        => 'icon-envelope-o',
-                'url'         => Backend::url('suresoftware/maillog/maillogs'),
+                'url'         => Backend::url('voilaah/maillog/maillogs'),
                 'order'       => 900,
                 'keywords'    => 'mail log',
                 'permissions' => ['system.access_logs'],

@@ -1,15 +1,16 @@
-<?php namespace SureSoftware\MailLog\Updates;
+<?php
+
+namespace Voilaah\MailLog\Updates;
 
 use Illuminate\Support\Facades\Mail;
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreateSuresoftwareMaillogLog extends Migration
+class BuilderTableCreatevoilaahMaillogLog extends Migration
 {
     public function up()
     {
-        Schema::create('suresoftware_maillog_log', function($table)
-        {
+        Schema::create('voilaah_maillog_log', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('to')->nullable();
@@ -21,9 +22,9 @@ class BuilderTableCreateSuresoftwareMaillogLog extends Migration
             $table->timestamp('updated_at')->nullable();
         });
     }
-    
+
     public function down()
     {
-        Schema::dropIfExists('suresoftware_maillog_log');
+        Schema::dropIfExists('voilaah_maillog_log');
     }
 }

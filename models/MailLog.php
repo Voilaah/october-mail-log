@@ -1,4 +1,6 @@
-<?php namespace SureSoftware\MailLog\Models;
+<?php
+
+namespace Voilaah\MailLog\Models;
 
 use Illuminate\Mail\Message;
 use Model;
@@ -14,7 +16,7 @@ class MailLog extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'suresoftware_maillog_log';
+    public $table = 'voilaah_maillog_log';
 
     /**
      * @var array Guarded fields
@@ -61,9 +63,9 @@ class MailLog extends Model
     public function getAttachmentsCountAttribute()
     {
         if ($this->attachments === null || $this->attachments === 0) {
-                return 0;
+            return 0;
         } else {
-                return count($this->attachments);
+            return count($this->attachments);
         }
     }
 

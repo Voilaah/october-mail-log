@@ -1,4 +1,6 @@
-<?php namespace SureSoftware\MailLog\Updates;
+<?php
+
+namespace Voilaah\MailLog\Updates;
 
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
@@ -8,7 +10,7 @@ class AddBodyAttachmentsCCFieldsToLogTable extends Migration
 {
     public function up()
     {
-        Schema::table('suresoftware_maillog_log', function (Blueprint $table) {
+        Schema::table('voilaah_maillog_log', function (Blueprint $table) {
             $table->string('cc')->nullable();
             $table->string('bcc')->nullable();
             $table->longText('body')->nullable();
@@ -18,7 +20,7 @@ class AddBodyAttachmentsCCFieldsToLogTable extends Migration
 
     public function down()
     {
-        Schema::table('suresoftware_maillog_log', function (Blueprint $table){
+        Schema::table('voilaah_maillog_log', function (Blueprint $table) {
             $table->dropColumn('cc');
             $table->dropColumn('bcc');
             $table->dropColumn('body');

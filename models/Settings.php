@@ -1,4 +1,6 @@
-<?php namespace SureSoftware\MailLog\Models;
+<?php
+
+namespace Voilaah\MailLog\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,6 +12,6 @@ class Settings extends Model
         'System.Behaviors.SettingsModel',
     ];
 
-    public $settingsCode = 'suresoftware_maillog_settings';
+    public $settingsCode = 'voilaah_maillog_settings';
     public $settingsFields = 'fields.yaml';
 }
