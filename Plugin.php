@@ -17,7 +17,7 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        Event::listen('mailer.send', function ($mailer, $view, \Illuminate\Mail\Message $message) {
+        Event::listen('mailer.send', function (\October\Rain\Mail\Mailer $mailer, string $view, \Illuminate\Mail\Message $message) {
             try {
                 (new MailLog)->createFromMailerSendEvent($mailer, $view, $message);
             } catch (\Exception $e) {

@@ -41,23 +41,74 @@ class MailLog extends Model
      *
      * @return $this
      */
-    public function createFromMailerSendEvent($mailer, $view, Message $message)
+    public function createFromMailerSendEvent(\October\Rain\Mail\Mailer $mailer, string $view, \Illuminate\Mail\Message $message)
     {
-        $mail = $message->getSwiftMessage();
+        try {
+            // Retrieve recipient's addresses
+            $to = $this->formatEmails($message->getTo());
+            $cc = $this->formatEmails($message->getCc());
+            $bcc = $this->formatEmails($message->getBcc());
+            $from = $this->formatEmails($message->getFrom());
 
-        $this->fill([
-            'to'          => $this->formatEmails($mail->getTo()),
-            'cc'          => $this->formatEmails($mail->getCc()),
-            'bcc'         => $this->formatEmails($mail->getBcc()),
-            'from'        => $this->formatEmails($mail->getFrom()),
-            'subject'     => $mail->getSubject(),
-            'body'        => $mail->getBody(),
-            'template'    => $view,
-            'sent'        => true,
-            'attachments' => $this->extractAttachments($mail),
-        ])->save();
+            // Retrieve the email subject
+            $subject = $message->getSubject();
 
-        return $this;
+            // Retrieve the Symfony Message instance
+            $symfonyMessage = $message->getSymfonyMessage();
+
+            // Initialize variables for HTML and plain text body
+            $htmlBody = null;
+            $plainTextBody = null;
+
+            // Check if the body is multipart
+            $body = $symfonyMessage->getBody();
+
+            if (
+                $body instanceof \Symfony\Component\Mime\Part\Multipart\MixedPart ||
+                $body instanceof \Symfony\Component\Mime\Part\Multipart\AlternativePart
+            ) {
+                // Loop through the parts to extract plain text and HTML content
+                foreach ($body->getParts() as $part) {
+                    if ($part->getMediaType() === 'text') {
+                        if ($part->getMediaSubtype() === 'plain') {
+                            $plainTextBody = $part->bodyToString();
+                        } elseif ($part->getMediaSubtype() === 'html') {
+                            $htmlBody = $part->bodyToString();
+                        }
+                    }
+                }
+            } elseif ($body instanceof \Symfony\Component\Mime\Part\TextPart) {
+                // Handle single-part emails
+                if ($body->getMediaType() === 'text' && $body->getMediaSubtype() === 'plain') {
+                    $plainTextBody = $body->getBody();
+                } elseif ($body->getMediaType() === 'text' && $body->getMediaSubtype() === 'html') {
+                    $htmlBody = $body->getBody();
+                }
+            }
+
+            // \Log::info('Email sent', [
+            //     'to' => $to,
+            //     'subject' => $subject,
+            //     'html_body' => $htmlBody,
+            //     'plain_text_body' => $plainTextBody ?? null,
+            // ]);
+
+            $this->fill([
+                'to'          => $to,
+                'cc'          => $cc,
+                'bcc'         => $bcc,
+                'from'        => $from,
+                'subject'     => $subject,
+                'body'        => $plainTextBody ?? null,
+                'template'    => $view,
+                'sent'        => true,
+                // 'attachments' => $this->extractAttachments($mail),
+            ])->save();
+
+            return $this;
+        } catch (\Throwable $th) {
+            \Log::error('Mail log sent', $th->getTraceAsString());
+        }
     }
 
     public function getAttachmentsCountAttribute()
@@ -86,7 +137,10 @@ class MailLog extends Model
     private function formatEmails($contacts)
     {
         if (is_array($contacts)) {
-            return implode(", ", array_keys((array)$contacts));
+            $emails = collect($contacts)
+                ->map(fn($item) => $item->getAddress());
+
+            return implode(", ", $emails->toArray());
         }
     }
 
