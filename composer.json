@@ -2,6 +2,8 @@
   "name": "voilaah/maillog-plugin",
   "type": "october-plugin",
   "description": "Adds a sent mail log to the settings back end of OctoberCMS",
+  "homepage": "https://octobercms.com/plugin/voilaah-maillog",
+  "keywords": ["october", "octobercms", "log", "mail"],
   "require": {
     "composer/installers": "~1.0",
     "hashids/hashids": "^4.0"
