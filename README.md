@@ -1,6 +1,6 @@
 # Support for October CMS v2 (Forked)
 
-The original version of this plugin was abandoned. This is an actively maintained fork of the original plugin that supports October CMS v2.
+The original version of this plugin was abandoned. This is an actively maintained fork of the original plugin that supports October CMS v2, v3 and v4.
 
 (Initially forked from suresoftware/october-mail-log)
 
