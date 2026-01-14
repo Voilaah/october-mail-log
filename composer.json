@@ -6,6 +6,6 @@
   "keywords": ["october", "octobercms", "log", "mail"],
   "require": {
     "composer/installers": "~1.0",
-    "hashids/hashids": "^4.0"
+    "hashids/hashids": "^5.0"
   }
 }
